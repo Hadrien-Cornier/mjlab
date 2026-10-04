@@ -41,6 +41,10 @@ Changed
 Fixed
 ^^^^^
 
+- ``dr.pd_gains`` and ``dr.effort_limits`` now select individual actuator rows
+  within controller groups. Subset selections no longer raise an index error
+  or change excluded motors. Paired PD rows share one joint or tendon effort
+  limit sample.
 - ``posture`` and ``variable_posture`` now pair each joint with its own ``std`` when
   ``asset_cfg.preserve_order=True``.
 - ``apply_body_impulse`` now applies ``body_point_offset`` in the body frame, as
