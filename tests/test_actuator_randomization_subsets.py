@@ -96,7 +96,9 @@ def _cfg(kind, targets, kp, kd, limit, transmission=TransmissionType.JOINT):
       motor_params=DcMotorDatasheetParams(
         nominal_voltage=24.0, stall_torque=2.0, no_load_speed=100.0
       ),
-      stiffness=kp,
+      # VELOCITY mode requires stiffness = 0 and damping > 0; POSITION keeps
+      # kp on the position error.
+      stiffness=0.0 if kind == "dc_velocity" else kp,
       damping=kd,
       voltage_limit=24.0,
       effort_limit=limit,
